@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>梁 ❤ 敏 · 我爱你</title>
+
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:"PingFang SC","Microsoft YaHei",sans-serif;
+  background:linear-gradient(120deg,#ffb3b3,#ffd6cc);
+  color:#fff;
+  text-align:center;
+  overflow-x:hidden;
+}
+
+/* 左右藤玫瑰 */
+.vine{
+  position:fixed;
+  bottom:-20%;
+  width:110px;
+  height:140%;
+  background-size:contain;
+  background-repeat:no-repeat;
+  pointer-events:none;
+  animation:vineGrow 6s ease-out forwards, vineSway 6s ease-in-out infinite;
+  z-index:1;
+  opacity:.9;
+}
+.vine.left{
+  left:0;
+  background-image:url("https://fastly.jsdelivr.net/gh/stevenjoezhang/live2d-widget/assets/rose_left.png");
+}
+.vine.right{
+  right:0;
+  background-image:url("https://fastly.jsdelivr.net/gh/stevenjoezhang/live2d-widget/assets/rose_right.png");
+}
+
+@keyframes vineGrow{
+  from{transform:translateY(40%);opacity:0}
+  to{transform:translateY(0);opacity:1}
+}
+@keyframes vineSway{
+  0%,100%{transform:rotate(0deg)}
+  50%{transform:rotate(1.2deg)}
+}
+
+/* 内容区 */
+.container{
+  position:relative;
+  z-index:2;
+  max-width:880px;
+  margin:auto;
+  padding:80px 18px 160px;
+}
+
+/* 标题 */
+.name{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  align-items:center;
+  gap:14px;
+  font-size:3rem;
+  margin-bottom:36px;
+  animation:nameMove 4s ease-in-out infinite;
+}
+.name .love{
+  font-size:1.8rem;
+  opacity:.9;
+}
+@keyframes nameMove{
+  0%{transform:translateX(-36px)}
+  50%{transform:translateX(36px)}
+  100%{transform:translateX(-36px)}
+}
+.heart{
+  color:#ff2f68;
+  animation:heartbeat 1.4s infinite;
+}
+@keyframes heartbeat{
+  0%,100%{transform:scale(1)}
+  25%,75%{transform:scale(1.25)}
+}
+
+/* 图片 */
+.image{
+  margin:28px auto 36px;
+}
+.image img{
+  width:100%;
+  max-width:520px;
+  display:block;
+  margin:0 auto;
+  border-radius:20px;
+  box-shadow:0 10px 24px rgba(0,0,0,.25);
+  opacity:.95;
+}
+
+/* 呼吸 */
+.animate{
+  animation:breathe 4s ease-in-out infinite;
+}
+@keyframes breathe{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-6px)}
+}
+
+/* 文案 */
+.love-text{
+  background:rgba(255,255,255,.24);
+  padding:34px;
+  border-radius:24px;
+  line-height:2;
+  font-size:1.15rem;
+  margin-bottom:46px;
+}
+
+/* 情话卡片 */
+.cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:22px;
+  margin-bottom:54px;
+}
+.card{
+  background:rgba(255,255,255,.28);
+  border-radius:22px;
+  padding:24px;
+  line-height:1.7;
+}
+
+/* 🔘 悬浮按钮（手机版优化） */
+.button-link{
+  display:inline-block;
+  padding:14px 28px;
+  font-size:0.95rem;
+  border-radius:40px;
+  background:linear-gradient(135deg,#ff3b6b,#ff7aa2);
+  color:#fff;
+  text-decoration:none;
+  box-shadow:0 10px 22px rgba(0,0,0,.3);
+  animation:heartbeat 1.8s infinite;
+}
+.fixed-btn{
+  position:fixed;
+  bottom:14px;
+  left:50%;
+  transform:translateX(-50%);
+  z-index:999;
+}
+</style>
+</head>
+
+<body>
+
+<!-- 🎵 背景音乐（用户任意操作即播放） -->
+<audio id="bgm" loop preload="auto">
+  <source src="https://cdn.pixabay.com/download/audio/2022/10/26/audio_6b6f84e1b0.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+const bgm=document.getElementById("bgm");
+function startMusic(){
+  bgm.play().catch(()=>{});
+  document.removeEventListener("click",startMusic);
+  document.removeEventListener("touchstart",startMusic);
+  document.removeEventListener("scroll",startMusic);
+}
+document.addEventListener("click",startMusic,{once:true});
+document.addEventListener("touchstart",startMusic,{once:true});
+document.addEventListener("scroll",startMusic,{once:true});
+</script>
+
+<div class="vine left"></div>
+<div class="vine right"></div>
+
+<div class="container">
+
+  <div class="name animate">
+    <span>梁</span>
+    <span class="heart">❤</span>
+    <span>敏</span>
+    <span class="love">我爱你</span>
+  </div>
+
+  <div class="image">
+    <img src="https://images.pexels.com/photos/1287145/pexels-photo-1287145.jpeg">
+  </div>
+
+  <div class="love-text animate">
+    <p>梁敏：</p>
+    <p>有些爱，不是突然出现，</p>
+    <p>而是在一次次想起你之后，慢慢确定。</p>
+    <p>像雪山一样，安静，却一直都在。</p>
+    <p><strong>我爱你，而且是认真的。</strong></p>
+  </div>
+
+  <div class="image">
+    <img src="https://images.pexels.com/photos/33109/fall-autumn-red-season.jpg">
+  </div>
+
+  <div class="cards">
+    <div class="card">不是一时心动，而是反复确认。</div>
+    <div class="card">世界很大，我只想走向你。</div>
+    <div class="card">未来不确定，但我想和你一起。</div>
+    <div class="card">这份爱，很慢，但很坚定。</div>
+    <div class="card">如果你愿意，我想陪你很久。</div>
+    <div class="card">有你在的地方，就是方向。</div>
+    <div class="card">不是轰烈，是长久。</div>
+    <div class="card">我把认真，全部给你。</div>
+  </div>
+
+  <div class="image">
+    <img src="https://images.pexels.com/photos/3408744/pexels-photo-3408744.jpeg">
+  </div>
+
+</div>
+
+<a
+  href="https://a0930891759-cyber.github.io/landing-page2/"
+  class="button-link fixed-btn"
+>
+  《点击我想和你在一起有惊喜》
+</a>
+
+</body>
+</html>
